@@ -24,12 +24,20 @@ describe('median', function() {
 })
 
 describe('standard deviation', function() {
-  it('should return the corrent median value - oddLen', function(){
-    assert.equal(stats.median(arrOddLen), 3);
+  it('should return the corrent stdev value - oddLen', function(){
+    assert.equal(stats.stdev(arrOddLen).toFixed(2) * 1, 4.88);
   })
   
-  it('should return the corrent median value - evenLen', function(){
-    assert.equal(stats.median(arrEvenLen).toFixed(2) * 1, 2.75);
+  it('should return the corrent stdev value - evenLen', function(){
+    assert.equal(stats.stdev(arrEvenLen).toFixed(2) * 1, 5.04);
+  })
+
+  it('should return zero for one-length array', function(){
+    assert.equal(stats.stdev([-12]), 0);
+  })
+
+  it('should return the corrent stdev value for 2-signed array', function(){
+    assert.equal(stats.stdev([-0.01,0,74.36]).toFixed(2) * 1, 35.06);
   })
 })
 

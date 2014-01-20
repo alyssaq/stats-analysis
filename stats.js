@@ -15,9 +15,9 @@ function mean(arr) {
 function variance(arr) {
   var dataMean = mean(arr);
 
-  return (arr.reduce(function(prev, curr) {
-    return prev + Math.pow(curr - dataMean, 2);
-  }) / arr.length);
+  return mean(arr.map(function(val) {
+     return Math.pow(val - dataMean, 2);
+  }));
 }
 
 function stdev(arr) {

@@ -15,6 +15,12 @@ No production dependencies.
  - Outlier Filter / Removal
  - More?
 
+## Installation
+
+```js
+  $ npm install stats-analysis
+```
+
 ## Usage
 
 ```js
@@ -25,11 +31,11 @@ No production dependencies.
   var arr = [-2, 1, 2, 2, 3, 3, 4, 15];
 
   //standard deviation
-  stats.stdev(arr)
-  > 3
+  stats.stdev(arr).toFixed(2) * 1 // Round to 2dp and convert to number
+  > 4.88
 
   //mean
-  stats.mean(arr).toFixed(2) * 1 // Round to 2dp and convert to number
+  stats.mean(arr).toFixed(2) * 1 
   > 3.86
 
   //median
