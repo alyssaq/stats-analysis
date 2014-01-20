@@ -1,5 +1,7 @@
 # Statistics and Data Analysis
 
+[![Build Status](https://travis-ci.org/alyssaq/stats-analysis.png?branch=master)](https://travis-ci.org/alyssaq/stats-analysis)
+
 Mini javascript statistics library for nodejs or the browser.   
 No production dependencies.   
 
