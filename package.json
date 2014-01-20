@@ -1,6 +1,6 @@
 {
   "name": "stats-analysis",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Engineering statistics and data analysis",
   "main": "stats.js",
   "scripts": {
