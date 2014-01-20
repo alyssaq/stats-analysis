@@ -49,8 +49,8 @@ No production dependencies.
   > false
 
   // filter outliers.  
-  // 2 params: array, theshold = 3.5
-  stats.filterOutliers(arr) // Default theshold of 3.5 used
+  // 2 params: array, threshold = 3.5
+  stats.filterOutliers(arr) // Default threshold of 3.5 used
   > [1, 2, 2, 3, 3, 4] 
 
   stats.filterOutliers(arr, 2.5) // Pass lower threshold
