@@ -11,8 +11,8 @@ No production dependencies.
  - Mean
  - Median (sorts before calculating)
  - Median Absolute Deviation (MAD)
- - Outlier Detection / Filter using Iglewicz and Hoaglin's method (MAD)
- - Outlier Detection / Filter using Median Differencing
+ - Outlier Detection & Filtering using Iglewicz and Hoaglin's method (MAD)
+ - Outlier Detection & Filtering using Median Differencing (Default method)
 
 ## Installation
 
@@ -45,21 +45,15 @@ No production dependencies.
   stats.MAD(arr)
   > 1
 
-  // outlier detection. Values above threshold are potential outliers 
-  // 3 params: value-to-test, array, threshold = 3.5
-  stats.isOutlier(-4, arr)  // Default theshold of 3.5 used
-  > true
+  // Outlier detection. Returns indexes of outliers
+  stats.indexOfOutliers(arr)  // Default theshold of 3
+  > [7]
 
-  stats.isOutlier(-4, arr, 5) // Higher threshold, allows more outliers.
-  > false
+  stats.indexOfOutliers(arr, 6) // Supply higher threshold to allow more outliers.
 
-  // filter outliers.  
-  // 2 params: array, threshold = 3.5
-  stats.filterOutliers(arr) // Default threshold of 3.5 used
-  > [1, 2, 2, 3, 3, 4] 
-
-  stats.filterOutliers(arr, 2.5) // Lower threshold, filters more outliers.
-  > [2, 2, 3, 3, 4] 
+  // Outlier filtering. Returns array with outliers removed.
+  stats.filterOutliers(arr)
+  > [-2, 1, 2, 2, 3, 3, 4] 
 ```
 
 ## Tests
