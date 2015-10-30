@@ -34,7 +34,7 @@ function median (arr) {
   if (arr.length === 0) return NaN
 
   var half = Math.floor(arr.length / 2)
-  arr = arr.slice(0).sort(function (a, b) { return a - b })
+  arr = arr.slice(0).sort(numSorter)
 
   if (arr.length % 2) { // Odd length, true middle element
     return arr[half]

@@ -27,19 +27,19 @@ No production dependencies.
 ```
 
 ```js
-  var arr = [-2, 1, 2, 2, 3, 3, 4, 15];
+  var arr = [-2, 1, 2, 3, 3, 4, 15];
 
   //standard deviation
   stats.stdev(arr).toFixed(2) * 1 // Round to 2dp and convert to number
-  > 4.88
+  > 4.98
 
   //mean
   stats.mean(arr).toFixed(2) * 1 
-  > 3.86
+  > 3.57
 
   //median
   stats.median(arr)
-  > 3
+  > 2
 
   //median absolute deviation
   stats.MAD(arr)
@@ -47,13 +47,13 @@ No production dependencies.
 
   // Outlier detection. Returns indexes of outliers
   stats.indexOfOutliers(arr)  // Default theshold of 3
-  > [7]
+  > [6]
 
   stats.indexOfOutliers(arr, 6) // Supply higher threshold to allow more outliers.
 
   // Outlier filtering. Returns array with outliers removed.
   stats.filterOutliers(arr)
-  > [-2, 1, 2, 2, 3, 3, 4] 
+  > [-2, 1, 2, 3, 3, 4] 
 ```
 
 ## Tests

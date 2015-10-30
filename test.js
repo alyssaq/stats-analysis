@@ -2,7 +2,7 @@
 var assert = require('assert')
 var stats = require('./stats')
 
-var arrOddLen = [-2, 1, 2, 2, 3, 3, 4, 15]
+var arrOddLen = [-2, 1, 2, 2, 3, 4, 15]
 var arrEvenLen = [1, 2, 2, 3.4, 2.2, 19, 5.2, 1.3, 3.3, 4.1]
 var randomData = [0.9, 0.74, 0.41, 2518, 0.64, 1.7, 0.63, 0.39,
   1.54, 0.277, 2.27, 0.37, 0.56, 0.2005, 3, 2.15, 0.78, 3.15, 2,
@@ -17,7 +17,7 @@ var randomData = [0.9, 0.74, 0.41, 2518, 0.64, 1.7, 0.63, 0.39,
 
 describe('mean', function () {
   it('should return the corrent mean value - oddLen', function () {
-    assert.equal(stats.mean(arrOddLen).toFixed(2), 3.5)
+    assert.equal(stats.mean(arrOddLen).toFixed(2), 3.57)
   })
 
   it('should return the corrent mean value - evenLen', function () {
@@ -27,7 +27,7 @@ describe('mean', function () {
 
 describe('median', function () {
   it('should return the corrent median value - oddLen', function () {
-    assert.equal(stats.median(arrOddLen), 2.5)
+    assert.equal(stats.median(arrOddLen), 2)
   })
   it('should return the corrent median value - evenLen', function () {
     assert.equal(stats.median(arrEvenLen).toFixed(2), 2.75)
@@ -36,7 +36,7 @@ describe('median', function () {
 
 describe('standard deviation', function () {
   it('should return the corrent stdev value - oddLen', function () {
-    assert.equal(stats.stdev(arrOddLen).toFixed(2), 4.66)
+    assert.equal(stats.stdev(arrOddLen).toFixed(2), 4.98)
   })
 
   it('should return the corrent stdev value - evenLen', function () {
@@ -64,12 +64,12 @@ describe('median absolute deviation', function () {
 
 describe('filterMADoutliers', function () {
   it('should return an array with two outliers removed given lower threshold', function () {
-    var res = [1, 2, 2, 3, 3, 4]
+    var res = [1, 2, 2, 3, 4]
     assert.equal(stats.filterMADoutliers(arrOddLen, 2.5).join(','), res.join(','))
   })
 
   it('should return an array with one outlier removed using default threshold', function () {
-    var res = [-2, 1, 2, 2, 3, 3, 4]
+    var res = [-2, 1, 2, 2, 3, 4]
     assert.equal(stats.filterMADoutliers(arrOddLen).join(','), res.join(','))
     assert.equal(stats.indexOfMADoutliers(arrOddLen).join(','), res.length.toString())
   })
@@ -105,7 +105,7 @@ describe('filterMADoutliers', function () {
 
 describe('filterMedianDiffOutliers', function () {
   it('should remove 1 outlier', function () {
-    var res = [-2, 1, 2, 2, 3, 3, 4]
+    var res = [-2, 1, 2, 2, 3, 4]
     assert.equal(stats.filterMedianDiffOutliers(arrOddLen).join(','), res.join(','))
     assert.equal(stats.indexOfMedianDiffOutliers(arrOddLen).join(','), res.length.toString())
   })
