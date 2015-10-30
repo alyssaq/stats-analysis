@@ -26,9 +26,14 @@ describe('mean', function () {
 })
 
 describe('median', function () {
+  it('should return NaN for empty array', function () {
+    assert.ok(isNaN(stats.median([])))
+  })
+
   it('should return the corrent median value - oddLen', function () {
     assert.equal(stats.median(arrOddLen), 2)
   })
+
   it('should return the corrent median value - evenLen', function () {
     assert.equal(stats.median(arrEvenLen).toFixed(2), 2.75)
   })

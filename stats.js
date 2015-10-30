@@ -31,8 +31,6 @@ function stdev (arr) {
 }
 
 function median (arr) {
-  if (arr.length === 0) return NaN
-
   var half = Math.floor(arr.length / 2)
   arr = arr.slice(0).sort(numSorter)
 
