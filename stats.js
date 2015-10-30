@@ -87,7 +87,7 @@ function filterMADoutliers (arr, threshold) {
 
 // Median filtering from difference between values
 function differences (arr) {
-  return arr.map((d, i) => {
+  return arr.map(function (d, i) {
     return Math.round(Math.abs(d - (arr[i - 1] || d[0]))) + 1
   })
 }
