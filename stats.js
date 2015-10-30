@@ -2,34 +2,40 @@
  * - Mean
  * - Median
  * - Standard Deviation
+ * - Mean Absolute Deviation (MAD)
  * - Outlier detection (Iglewicz and Hoaglin method)
  * - Remove outliers from an array of numbers
  */
 
+var outlierMethod = {
+  MAD: 'MAD',
+  medianDiff: 'medianDiff'
+}
+
 function mean(arr) {
-  return (arr.reduce(function(prev, curr) {
-    return prev + curr;
-  }) / arr.length);
+  return (arr.reduce(function (prev, curr) {
+    return prev + curr
+  }) / arr.length)
 }
 
 function variance(arr) {
-  var dataMean = mean(arr);
+  var dataMean = mean(arr)
 
-  return mean(arr.map(function(val) {
-     return Math.pow(val - dataMean, 2);
-  }));
+  return mean(arr.map(function (val) {
+     return Math.pow(val - dataMean, 2)
+  }))
 }
 
 function stdev(arr) {
-  return Math.sqrt(variance(arr));
+  return Math.sqrt(variance(arr))
 }
 
 function median(arr) {
   if (arr.length === 0) return NaN
 
-  var half = Math.floor(arr.length / 2);
+  var half = Math.floor(arr.length / 2)
+  arr = arr.slice(0).sort(function (a, b) { return a - b })
 
-  arr = arr.sort(function (a, b) { return a - b });
   if (arr.length % 2) { // Odd length, true middle element
     return arr[half]
   } else { // Even length, average middle two elements
@@ -38,33 +44,107 @@ function median(arr) {
 }
 
 function medianAbsoluteDeviation(arr, dataMedian) {
-  dataMedian = dataMedian || median(arr);
+  dataMedian = dataMedian || median(arr)
   var absoluteDeviation = arr.map(function(val) {
-      return Math.abs(val - dataMedian);
-    });
+      return Math.abs(val - dataMedian)
+    })
 
-  return median(absoluteDeviation);
+  return median(absoluteDeviation)
 }
 
-// Iglewicz and Hoaglin method 
+function numSorter(a, b) {
+  return a - b
+}
+
+// Iglewicz and Hoaglin method
 //  values with a Z-score > 3.5 are considered potential outliers
-function isOutlierCache(val, threshold, dataMedian, dataMAD) {
-  return Math.abs((0.6745 * (val-dataMedian)) / dataMAD) > threshold;
+function isMADoutlier(val, threshold, dataMedian, dataMAD) {
+  return Math.abs((0.6745 * (val-dataMedian)) / dataMAD) > threshold
 }
 
-function isOutlier(val, arr, threshold) {
-  threshold = threshold || 3.5;
-  return isOutlierCache(val, threshold, median(arr), medianAbsoluteDeviation(arr));
+function MAD(arr, threshold, returnFunc) {
+  threshold = threshold || 3.5 // Default recommended threshold
+  var dataMedian = median(arr)
+  var dataMAD = medianAbsoluteDeviation(arr, dataMedian)
+
+  return returnFunc(isMADoutlier(val, threshold, dataMedian, dataMAD))
 }
 
-function filterOutliers(arr, threshold) {
-  var dataMedian = median(arr), 
-    dataMAD = medianAbsoluteDeviation(arr, dataMedian);
+function indexOfMADoutliers(arr, threshold) {
+  threshold = threshold || 3.5 // Default recommended threshold
+  var dataMedian = median(arr)
+  var dataMAD = medianAbsoluteDeviation(arr, dataMedian)
 
-  threshold = threshold || 3.5; //Default recommended threshold
-  return arr.filter(function(val) {
-    return !isOutlierCache(val, threshold, dataMedian, dataMAD);
-  });
+  return arr.reduce(function (res, val, i) {
+    if (isMADoutlier(val, threshold, dataMedian, dataMAD)) {
+      res.push(i)
+    }
+    return res
+  }, [])
+}
+
+function filterMADoutliers(arr, threshold) {
+  threshold = threshold || 3.5 // Default recommended threshold
+  var dataMedian = median(arr)
+  var dataMAD = medianAbsoluteDeviation(arr, dataMedian)
+
+  return arr.filter(function (val) {
+    return !isMADoutlier(val, threshold, dataMedian, dataMAD)
+  })
+}
+
+// Median filtering from difference between values
+function differences(arr) {
+  return arr.map((d, i) => {
+    return Math.round(Math.abs(d - (arr[i-1] || d[0]))) + 1
+  })
+}
+
+function isMedianDiffOutlier(threshold, difference, medianDiff) {
+  return difference / medianDiff > threshold
+}
+
+function indexOfMedianDiffOutliers(arr, threshold) {
+  threshold = threshold || 3 // Default threshold of 3 std
+  var differencesArr = differences(arr)
+  var medianDiff = median(differencesArr)
+
+  return arr.reduce(function (res, val, i) {
+    if (isMedianDiffOutlier(threshold, differencesArr[i], medianDiff)) {
+      res.push(i)
+    }
+    return res
+  }, [])
+}
+
+function filterMedianDiffOutliers(arr, threshold) {
+  threshold = threshold || 3 // Default threshold of 3 std
+  var differencesArr = differences(arr)
+  var medianDiff = median(differencesArr)
+
+  return arr.filter(function (_, i) {
+    return !isMedianDiffOutlier(threshold, differencesArr[i], medianDiff)
+  })
+}
+
+function filterOutliers(arr, threshold, method) {
+  switch (method) {
+    case outlierMethod.MAD:
+      return filterMADoutliers(arr, threshold)
+      break
+    default:
+      return filterMedianDiffOutliers(arr, threshold)
+  }
+}
+
+function indexOfOutliers(arr, threshold, method) {
+  switch (method) {
+    case outlierMethod.MAD:
+      return indexOfMADoutliers(arr, threshold)
+      break
+    default:
+      return indexOfMedianDiffOutliers(arr, threshold)
+  }
 }
 
 module.exports = {
@@ -72,7 +152,13 @@ module.exports = {
   mean: mean,
   median: median,
   MAD: medianAbsoluteDeviation,
-  isOutlier: isOutlier,
-  filterOutliers: filterOutliers
-};
+  numSorter: numSorter,
+  outlierMethod: outlierMethod,
+  filterOutliers: filterOutliers,
+  indexOfOutliers: indexOfOutliers,
+  filterMADoutliers: filterMADoutliers,
+  indexOfMADoutliers: indexOfMADoutliers,
+  filterMedianDiffOutliers: filterMedianDiffOutliers,
+  indexOfMedianDiffOutliers: indexOfMedianDiffOutliers
+}
 

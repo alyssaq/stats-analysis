@@ -9,11 +9,10 @@ No production dependencies.
 
  - Standard Deviation
  - Mean
- - Median
+ - Median (sorts before calculating)
  - Median Absolute Deviation (MAD)
- - Outlier Detection (using Iglewicz and Hoaglin's method)
- - Outlier Filter / Removal
- - More?
+ - Outlier Detection / Filter using Iglewicz and Hoaglin's method (MAD)
+ - Outlier Detection / Filter using Median Differencing
 
 ## Installation
 
@@ -48,10 +47,10 @@ No production dependencies.
 
   // outlier detection. Values above threshold are potential outliers 
   // 3 params: value-to-test, array, threshold = 3.5
-  stats.isOutlier(-10, arr)  // Default theshold of 3.5 used
+  stats.isOutlier(-4, arr)  // Default theshold of 3.5 used
   > true
 
-  stats.isOutlier(-3, arr, 5) // Pass higher threshold
+  stats.isOutlier(-4, arr, 5) // Higher threshold, allows more outliers.
   > false
 
   // filter outliers.  
@@ -59,8 +58,8 @@ No production dependencies.
   stats.filterOutliers(arr) // Default threshold of 3.5 used
   > [1, 2, 2, 3, 3, 4] 
 
-  stats.filterOutliers(arr, 2.5) // Pass lower threshold
-  > [-2, 1, 2, 2, 3, 3, 4] 
+  stats.filterOutliers(arr, 2.5) // Lower threshold, filters more outliers.
+  > [2, 2, 3, 3, 4] 
 ```
 
 ## Tests
