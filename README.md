@@ -1,6 +1,7 @@
 # Statistics and Data Analysis
 
 [![Build Status](https://travis-ci.org/alyssaq/stats-analysis.png?branch=master)](https://travis-ci.org/alyssaq/stats-analysis)
+[![codecov.io](https://codecov.io/github/alyssaq/stats-analysis/coverage.svg?branch=master)](https://codecov.io/github/alyssaq/stats-analysis?branch=master)
 
 Mini javascript statistics library for nodejs or the browser.   
 No production dependencies.   
@@ -17,43 +18,43 @@ No production dependencies.
 ## Installation
 
 ```js
-  $ npm install stats-analysis
+$ npm install stats-analysis
 ```
 
 ## Usage
 
 ```js
-  var stats = require("./stats") // include statistics library
+var stats = require("./stats-analysis") // include statistics library
 ```
 
 ```js
-  var arr = [-2, 1, 2, 3, 3, 4, 15];
+var arr = [-2, 1, 2, 3, 3, 4, 15]
 
-  //standard deviation
-  stats.stdev(arr).toFixed(2) * 1 // Round to 2dp and convert to number
-  > 4.98
+//standard deviation
+stats.stdev(arr).toFixed(2) * 1 // Round to 2dp and convert to number
+> 4.98
 
-  //mean
-  stats.mean(arr).toFixed(2) * 1 
-  > 3.57
+//mean
+stats.mean(arr).toFixed(2) * 1 
+> 3.57
 
-  //median
-  stats.median(arr)
-  > 2
+//median
+stats.median(arr)
+> 2
 
-  //median absolute deviation
-  stats.MAD(arr)
-  > 1
+//median absolute deviation
+stats.MAD(arr)
+> 1
 
-  // Outlier detection. Returns indexes of outliers
-  stats.indexOfOutliers(arr)  // Default theshold of 3
-  > [6]
+// Outlier detection. Returns indexes of outliers
+stats.indexOfOutliers(arr)  // Default theshold of 3
+> [6]
 
-  stats.indexOfOutliers(arr, 6) // Supply higher threshold to allow more outliers.
+stats.indexOfOutliers(arr, 6) // Supply higher threshold to allow more outliers.
 
-  // Outlier filtering. Returns array with outliers removed.
-  stats.filterOutliers(arr)
-  > [-2, 1, 2, 3, 3, 4] 
+// Outlier filtering. Returns array with outliers removed.
+stats.filterOutliers(arr)
+> [-2, 1, 2, 3, 3, 4] 
 ```
 
 ## Tests
@@ -62,8 +63,8 @@ No production dependencies.
 To run the tests, simply run the following commands:
 
 ```js
-  $ npm install  // Grab mocha
-  $ npm test     // Run tests
+$ npm install  // Grab mocha
+$ npm test     // Run tests
 ```
 
 ## Resources
