@@ -7,7 +7,7 @@
     "test": "make test",
     "lint": "standard",
     "cov": "istanbul cover ./node_modules/mocha/bin/_mocha",
-    "codecov": "cat coverage/coverage.json | codecov"
+    "codecov": "npm run cov && cat coverage/coverage.json | codecov"
   },
   "devDependencies": {
     "codecov.io": "^0.1.6",
