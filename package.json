@@ -1,19 +1,22 @@
 {
   "name": "stats-analysis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Engineering statistics and data analysis",
-  "main": "stats.js",
+  "main": "dist/stats.js",
   "scripts": {
     "test": "make test",
     "lint": "standard",
+    "prepublish": "babel --plugins transform-es2015-modules-umd stats.js --out-dir dist",
     "cov": "istanbul cover ./node_modules/mocha/bin/_mocha",
     "codecov": "npm run cov && cat coverage/coverage.json | codecov"
   },
   "devDependencies": {
+    "babel-cli": "^6.3.17",
+    "babel-plugin-transform-es2015-modules-umd": "^6.3.13",
     "codecov.io": "^0.1.6",
-    "istanbul": "^0.4.0",
-    "mocha": "*",
-    "standard": "^5.3.1"
+    "istanbul": "^0.4.1",
+    "mocha": "^2.3.4",
+    "standard": "^5.4.1"
   },
   "repository": {
     "type": "git",

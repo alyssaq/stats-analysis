@@ -15,18 +15,23 @@ No production dependencies.
  - Outlier Detection & Filtering using Iglewicz and Hoaglin's method (MAD)
  - Outlier Detection & Filtering using Median Differencing (Default method)
 
-## Installation
+## Node.js / Browserify / ES6 module
 
 ```js
 $ npm install stats-analysis
-```
 
-## Usage
-
-```js
 var stats = require("./stats-analysis") // include statistics library
 ```
 
+## Browser
+```html
+<script src="https://npmcdn.com/stats-analysis"></script>
+```
+```js
+window.stats
+```
+
+## Usage
 ```js
 var arr = [-2, 1, 2, 3, 3, 4, 15]
 
@@ -35,7 +40,7 @@ stats.stdev(arr).toFixed(2) * 1 // Round to 2dp and convert to number
 > 4.98
 
 //mean
-stats.mean(arr).toFixed(2) * 1 
+stats.mean(arr).toFixed(2) * 1
 > 3.57
 
 //median
@@ -54,17 +59,21 @@ stats.indexOfOutliers(arr, 6) // Supply higher threshold to allow more outliers.
 
 // Outlier filtering. Returns array with outliers removed.
 stats.filterOutliers(arr)
-> [-2, 1, 2, 3, 3, 4] 
+> [-2, 1, 2, 3, 3, 4]
 ```
 
-## Tests
+## Development
 
-[Mocha](http://visionmedia.github.io/mocha/) is used as the testing framework.      
-To run the tests, simply run the following commands:
+[Mocha](http://visionmedia.github.io/mocha/) is used as the testing framework.  
+Istanbul and [codecov](https://github.com/cainus/codecov.io) used for code coverage.
+
+Commands:
 
 ```js
-$ npm install  // Grab mocha
-$ npm test     // Run tests
+$ npm install   // Grab mocha
+$ npm run lint  // Ensure code consistency with standard
+$ npm test      // Run tests
+$ npm run cov   // Run code coverage. (Ensure 100%)
 ```
 
 ## Resources
@@ -75,9 +84,10 @@ http://www.itl.nist.gov/div898/handbook/index.htm
 ## Contribute to the library
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+3. Make changes and ensure tests and code coverage all pass.
+4. Commit your changes: `git commit -m 'Add some feature'`
+5. Push to the branch: `git push origin my-new-feature`
+6. Submit a pull request :D
 
 ## License
 MIT
