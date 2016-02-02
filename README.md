@@ -63,7 +63,7 @@ stats.filterOutliers(arr)
 ```
 
 To use different outlier methods:
-```
+```js
 stats.filterOutliers(arr, stats.outlierMethod.medianDiff)
 stats.filterOutliers(arr, stats.outlierMethod.medianDiff, 6) // Different threshold
 stats.filterOutliers(arr, stats.outlierMethod.MAD) // Default
