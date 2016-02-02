@@ -12,8 +12,8 @@ No production dependencies.
  - Mean
  - Median (sorts before calculating)
  - Median Absolute Deviation (MAD)
- - Outlier Detection & Filtering using Iglewicz and Hoaglin's method (MAD)
- - Outlier Detection & Filtering using Median Differencing (Default method)
+ - Outlier Detection & Filtering using Iglewicz and Hoaglin's method (MAD) - Use this if the order of your data does not matter.
+ - Outlier Detection & Filtering using Median Differencing (Default method) - Use this if the order of your data matters. This looks at the difference between adjacent points best for time series data.
 
 ## Node.js / Browserify / ES6 module
 
@@ -60,6 +60,17 @@ stats.indexOfOutliers(arr, 6) // Supply higher threshold to allow more outliers.
 // Outlier filtering. Returns array with outliers removed.
 stats.filterOutliers(arr)
 > [-2, 1, 2, 3, 3, 4]
+```
+
+To use different outlier methods:
+```
+stats.filterOutliers(arr, stats.outlierMethod.medianDiff)
+stats.filterOutliers(arr, stats.outlierMethod.medianDiff, 6) // Different threshold
+stats.filterOutliers(arr, stats.outlierMethod.MAD) // Default
+
+stats.indexOfOutliers(arr, stats.outlierMethod.medianDiff)
+stats.indexOfOutliers(arr, stats.outlierMethod.medianDiff, 6) // Different threshold
+stats.indexOfOutliers(arr, stats.outlierMethod.MAD) // Default
 ```
 
 ## Development

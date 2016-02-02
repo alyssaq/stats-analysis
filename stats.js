@@ -117,7 +117,7 @@ function filterMedianDiffOutliers (arr, threshold) {
   })
 }
 
-function filterOutliers (arr, threshold, method) {
+function filterOutliers (arr, method, threshold) {
   switch (method) {
     case outlierMethod.MAD:
       return filterMADoutliers(arr, threshold)
@@ -126,7 +126,7 @@ function filterOutliers (arr, threshold, method) {
   }
 }
 
-function indexOfOutliers (arr, threshold, method) {
+function indexOfOutliers (arr, method, threshold) {
   switch (method) {
     case outlierMethod.MAD:
       return indexOfMADoutliers(arr, threshold)
