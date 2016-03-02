@@ -134,7 +134,6 @@ describe('Index of Outliers', function () {
   assert.equal(stats.indexOfOutliers(randomData, stats.outlierMethod.MAD).length, 10)
 
   var arr = [5000, 4900, 1000, 3000, 4400, 1200300, 5000, 5500, 126500]
-  var indexsToRemove = stats.indexOfOutliers(arr, stats.outlierMethod.MAD);
   assert.equal(stats.indexOfOutliers(arr, stats.outlierMethod.MAD).join(','), '2,5,8')
   assert.equal(stats.indexOfOutliers(arr, stats.outlierMethod.MedianDiff).join(','), '5,6,8')
 })

@@ -11,12 +11,12 @@
     "codecov": "npm run cov && cat coverage/coverage.json | codecov"
   },
   "devDependencies": {
-    "babel-cli": "^6.3.17",
-    "babel-plugin-transform-es2015-modules-umd": "^6.3.13",
+    "babel-cli": "^6.6.4",
+    "babel-plugin-transform-es2015-modules-umd": "^6.6.0",
     "codecov.io": "^0.1.6",
-    "istanbul": "^0.4.1",
-    "mocha": "^2.3.4",
-    "standard": "^5.4.1"
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5",
+    "standard": "^6.0.7"
   },
   "repository": {
     "type": "git",
