@@ -25,7 +25,7 @@ var stats = require("./stats-analysis") // include statistics library
 
 ## Browser
 ```html
-<script src="https://npmcdn.com/stats-analysis"></script>
+<script src="https://unpkg.com/stats-analysis"></script>
 ```
 ```js
 window.stats
