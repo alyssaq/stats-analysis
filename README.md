@@ -75,7 +75,7 @@ stats.indexOfOutliers(arr, stats.outlierMethod.MAD) // Default
 
 ## Development
 
-[Mocha](http://visionmedia.github.io/mocha/) is used as the testing framework.  
+[Mocha](http://mochajs.org/) is used as the testing framework.  
 Istanbul and [codecov](https://github.com/cainus/codecov.io) used for code coverage.
 
 Commands:
